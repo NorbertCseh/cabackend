@@ -8,28 +8,42 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
-import org.springframework.context.annotation.Profile;
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "users")
+@ApiModel(description = "All details about the User")
+// @JsonIgnoreProperties(value = "password")
+// @JsonFilter("passwordFilter")
 public class User {
 
     @Id
     @GeneratedValue
+    @ApiModelProperty("Auto generated value")
     private long id;
 
     @NotNull
     @Size(min = 3, message = "Name should have at least 3 characters!")
+    @ApiModelProperty("Must be longer then eight characters")
     private String fullName;
 
     @NotNull
+    @ApiModelProperty("Email must be unique")
     private String email;
 
-    @NotNull
+    @JsonIgnore
     @Size(min = 8, message = "Password is to short!")
+    @ApiModelProperty("Password must be longer than eight characters")
     private String password;
 
+    @DateTimeFormat
     private Date registerDate;
 
     @NotNull
@@ -39,6 +53,7 @@ public class User {
     private String status;
 
     @Past
+    @ApiModelProperty("Birth day should be in the past")
     private Date birthday;
 
     private String[] skills;

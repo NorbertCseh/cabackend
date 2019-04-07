@@ -4,8 +4,11 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import io.swagger.annotations.ApiModel;
+
 @Entity
 @Table(name = "experiences")
+@ApiModel(description = "All details about the User's Experience")
 public class Experience {
 
     @Id

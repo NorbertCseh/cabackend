@@ -49,4 +49,8 @@ public class UserServiceImpl implements UserService {
         return userRepo.save(user);
     }
 
+    public User deleteUserByHandle(String handle) {
+        return userRepo.deleteUserByHandle(handle);
+    }
+
 }

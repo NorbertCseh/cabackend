@@ -18,4 +18,6 @@ public interface UserService {
 
     public User save(User user);
 
+    public User deleteUserByHandle(String handle);
+
 }
