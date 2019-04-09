@@ -8,10 +8,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import io.swagger.annotations.ApiModel;
@@ -73,6 +71,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Education> education;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> post;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comment;
 
     protected User() {
 
@@ -314,6 +318,34 @@ public class User {
      */
     public void setHandle(String handle) {
         this.handle = handle;
+    }
+
+    /**
+     * @return the post
+     */
+    public List<Post> getPost() {
+        return post;
+    }
+
+    /**
+     * @param post the post to set
+     */
+    public void setPost(List<Post> post) {
+        this.post = post;
+    }
+
+    /**
+     * @return the comment
+     */
+    public List<Comment> getComment() {
+        return comment;
+    }
+
+    /**
+     * @param comment the comment to set
+     */
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
     }
 
 }
